@@ -8,7 +8,7 @@ export const DisplayController = (function() {
     const todosList = document.querySelector("#todos-list")
     const projectsList = document.querySelector("#projects-list")
     
-    function renderProject(project, onToggleClick) {
+    function renderProject(project, onToggleClick, onDeleteTodo) {
         const title = document.querySelector("#project-title")
         const todosList = document.querySelector("#todos-list")
 
@@ -39,11 +39,20 @@ export const DisplayController = (function() {
             })
             statusEl.appendChild(toggleBtn)
 
+            const deleteTodo = document.createElement("span")
+            const deleteBtn = document.createElement("button")
+            deleteBtn.textContent = "Delete To-Do"
+            deleteBtn.addEventListener("click", () => {
+                onDeleteTodo(todo)
+            })
+            deleteTodo.appendChild(deleteBtn)
+
             div.appendChild(titleEl)
             div.appendChild(descriptionEl)
             div.appendChild(dueDateEl)
             div.appendChild(priorityEl)
             div.appendChild(statusEl)
+            div.appendChild(deleteTodo)
             
             todosList.appendChild(div)
         })

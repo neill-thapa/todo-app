@@ -1,17 +1,16 @@
 export function createTodo(title, description, dueDate, priority) {
+  let completeStatus = false;
 
-    let completeStatus = false
-    
-    function toggleCompleteStatus() {
-        completeStatus = !completeStatus
-    }
+  function toggleCompleteStatus() {
+    completeStatus = !completeStatus;
+  }
 
-    return {
-        title,
-        description,
-        dueDate,
-        priority,
-        getCompleteStatus: () => completeStatus,
-        toggleCompleteStatus
-    }
+  return {
+    title,
+    description,
+    dueDate,
+    priority,
+    getCompleteStatus: () => completeStatus,
+    toggleCompleteStatus
+  };
 }

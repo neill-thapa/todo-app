@@ -85,6 +85,14 @@ export const DisplayController = (function() {
         form.addEventListener("submit", (e) => {
             e.preventDefault()
 
+            if (
+                title.input.value === "" || 
+                description.input.value === ""
+            ) {
+                alert("Please fill in all fields")
+                return
+            }
+
             onSubmit(
                 title.input.value,
                 description.input.value
@@ -121,6 +129,16 @@ export const DisplayController = (function() {
 
         form.addEventListener("submit", (e) => {
             e.preventDefault()
+
+            if (
+                title.input.value === "" || 
+                description.input.value === "" ||
+                dueDate.input.value === "" ||
+                priority.input.value === ""
+            ) {
+                alert("Please fill in all fields")
+                return
+            }
 
             onSubmit(
                 title.input.value,

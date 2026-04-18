@@ -14,6 +14,10 @@ projectButton.addEventListener("click", () => {
 
 const todoButton = document.querySelector(".add-todo")
 todoButton.addEventListener("click", () => {
+    if (!currentProject) {
+        alert("Please select a project first!")
+        return
+    }
     DisplayController.renderTodoModal((title, description, dueDate, priority) => {
         currentProject.addTodo(title, description, dueDate, priority)
         DisplayController.renderProject(currentProject)

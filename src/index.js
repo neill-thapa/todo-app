@@ -20,13 +20,13 @@ todoButton.addEventListener("click", () => {
     }
     DisplayController.renderTodoModal((title, description, dueDate, priority) => {
         currentProject.addTodo(title, description, dueDate, priority)
-        DisplayController.renderProject(currentProject)
+        DisplayController.renderProject(currentProject, handleToggleTodo)
     })
 })
 
 function handleProjectClick(project) {
     currentProject = project
-    DisplayController.renderProject(project)
+    DisplayController.renderProject(project, handleToggleTodo)
 }
 
 function handleProjectDelete(project) {
@@ -45,6 +45,12 @@ function handleProjectDelete(project) {
     updateUI()
 }
 
+function handleToggleTodo(todo) {
+    console.log("Toggle clicked!", todo)
+    todo.toggleCompleteStatus()
+    DisplayController.renderProject(currentProject, handleToggleTodo)
+}
+
 function updateUI() {
     DisplayController.renderProjects(
         ProjectManager.getProjects(), 
@@ -58,4 +64,6 @@ DisplayController.renderProjects(
     handleProjectClick, 
     handleProjectDelete
 )
-handleProjectClick(ProjectManager.getProjects()[0])
+if (ProjectManager.getProjects().length > 0) {
+    handleProjectClick(ProjectManager.getProjects()[0])
+}

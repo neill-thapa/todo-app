@@ -11,7 +11,7 @@ export function createTodo(title, description, dueDate, priority) {
         description,
         dueDate,
         priority,
-        completeStatus,
+        getCompleteStatus: () => completeStatus,
         toggleCompleteStatus
     }
 }

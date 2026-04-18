@@ -8,7 +8,7 @@ export const DisplayController = (function() {
     const todosList = document.querySelector("#todos-list")
     const projectsList = document.querySelector("#projects-list")
     
-    function renderProject(project) {
+    function renderProject(project, onToggleClick) {
         const title = document.querySelector("#project-title")
         const todosList = document.querySelector("#todos-list")
 
@@ -30,13 +30,21 @@ export const DisplayController = (function() {
             priorityEl.textContent = todo.priority 
 
             const statusEl = document.createElement("span")
-            statusEl.textContent = todo.completeStatus ? "✓ Complete" : "○ Incomplete"
+            statusEl.textContent = todo.getCompleteStatus() ? "✓ Complete" : "○ Incomplete"
+
+            const toggleBtn = document.createElement("button")
+            toggleBtn.textContent = "Toggle Status"
+            toggleBtn.addEventListener("click", () => {
+                onToggleClick(todo)
+            })
+            statusEl.appendChild(toggleBtn)
 
             div.appendChild(titleEl)
             div.appendChild(descriptionEl)
             div.appendChild(dueDateEl)
             div.appendChild(priorityEl)
             div.appendChild(statusEl)
+            
             todosList.appendChild(div)
         })
     }

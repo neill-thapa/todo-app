@@ -18,16 +18,17 @@ export const DisplayController = (function() {
         project.getTodos().forEach(todo => {
             const div = document.createElement("div")
             const titleEl = document.createElement("span")
+            titleEl.classList.add("todo-title")
             titleEl.textContent = todo.title
 
             const descriptionEl = document.createElement("span")
-            descriptionEl.textContent = todo.description
+            descriptionEl.textContent = "Description: " + todo.description
 
             const dueDateEl = document.createElement("span")
-            dueDateEl.textContent = todo.dueDate
+            dueDateEl.textContent = "Deadline: " + todo.dueDate
 
             const priorityEl = document.createElement("span")
-            priorityEl.textContent = todo.priority 
+            priorityEl.textContent = "Priority: " + todo.priority 
 
             const statusEl = document.createElement("span")
             statusEl.textContent = todo.getCompleteStatus() ? "✓ Complete" : "○ Incomplete"
@@ -59,7 +60,6 @@ export const DisplayController = (function() {
     }
 
     function renderProjects(projects, onProjectClick, onProjectDelete) {
-        const projectsList = document.querySelector("#projects-list")
         projectsList.innerHTML = ""
 
         projects.forEach(project => {
